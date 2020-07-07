@@ -3,8 +3,15 @@ const resolvePath = (path) => require('path').resolve(__dirname, path)
 module.exports = {
   type: 'ssr', // 指定运行类型可设置为csr切换为客户端渲染
   routes: [
+    // {
+    //   path: '/',
+    //   exact: true,
+    //   Component: () => (require('@/page/index').default), // 这里使用一个function包裹为了让它延迟require
+    //   controller: 'page',
+    //   handler: 'index'
+    // },
     {
-      path: '/',
+      path: '/home',
       exact: true,
       Component: () => (require('@/page/index').default), // 这里使用一个function包裹为了让它延迟require
       controller: 'page',
@@ -14,6 +21,34 @@ module.exports = {
       path: '/news/:id',
       exact: true,
       Component: () => (require('@/page/news').default),
+      controller: 'page',
+      handler: 'index'
+    },
+    {
+      path: '/myweb',
+      exact: true,
+      Component: () => (require('@/page/myweb').default),
+      controller: 'page',
+      handler: 'index'
+    },
+    {
+      path: '/read-notes',
+      exact: true,
+      Component: () => (require('@/page/read-notes').default),
+      controller: 'page',
+      handler: 'index'
+    },
+    {
+      path: '/extract',
+      exact: true,
+      Component: () => (require('@/page/extract').default),
+      controller: 'page',
+      handler: 'index'
+    },
+    {
+      path: '/another',
+      exact: true,
+      Component: () => (require('@/page/another').default),
       controller: 'page',
       handler: 'index'
     }

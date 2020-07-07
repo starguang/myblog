@@ -5,11 +5,13 @@
     "egg": "^2.21.0",
     "egg-scripts": "^2.11.0",
     "egg-static": "^2.2.0",
+    "hyperdown": "^2.4.4",
     "react": "16.8.3",
     "react-dom": "16.8.3",
+    "react-markdown": "^4.3.1",
     "react-router-dom": "^5.0.0",
-    "ykfe-utils": "^3.0.0",
-    "serialize-javascript": "^2.1.2"
+    "serialize-javascript": "^2.1.2",
+    "ykfe-utils": "^3.0.0"
   },
   "scripts": {
     "debug": "egg-bin debug",

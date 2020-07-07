@@ -1,14 +1,23 @@
 
 import React from 'react'
 import serialize from 'serialize-javascript'
-import { Link } from 'react-router-dom'
+import { NavLink  } from 'react-router-dom'
 import '@/assets/common.less'
 import './index.less'
 
 const commonNode = props => (
   // 为了同时兼容ssr/csr请保留此判断，如果你的layout没有内容请使用 props.children ?  props.children  : ''
   props.children
-    ? <div className='normal'><h1 className='title'><Link to='/'>Egg + React + SSR</Link><div className='author'>by ykfe</div></h1>{props.children}</div>
+    ? <div className='normal'>
+        <h1 className='title'>
+          <NavLink className="myNav" activeClassName='active' to='/home'>主页</NavLink>
+          <NavLink className="myNav" activeClassName='active' to='/myweb'>前端思考</NavLink>
+          <NavLink className="myNav" activeClassName='active' to='/read-notes'>读书笔记</NavLink>
+          <NavLink className="myNav" activeClassName='active' to='/another'>随笔</NavLink>
+          <NavLink className="myNav" activeClassName='active' to='/extract'>摘抄</NavLink>
+        </h1>
+        {props.children}
+      </div>
     : ''
 )
 
