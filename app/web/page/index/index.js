@@ -1,15 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactMarkdown from 'react-markdown';
 import { Link } from 'react-router-dom'
 import './index.less'
 
 function Page (props) {
-  const { filesArr } = props;
+  const { filesArr = [] } = props;
   const blonList = () => {
     return filesArr.map(file => {
       return <p key={file}>{file}</p>
     })
-  }
+  };
+  // useEffect() {
+  //   window.fetch('/api/getList');
+    
+  // }
   return (
     <div className='normal'>
       <div className='welcome' />
