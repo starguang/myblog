@@ -17,17 +17,24 @@ module.exports = {
       controller: 'page',
       handler: 'index'
     },
+    // {
+    //   path: '/news/:id',
+    //   exact: true,
+    //   Component: () => (require('@/page/news').default),
+    //   controller: 'page',
+    //   handler: 'index'
+    // },
     {
-      path: '/news/:id',
+      path: '/webLearn',
       exact: true,
-      Component: () => (require('@/page/news').default),
+      Component: () => (require('@/page/myweb').default),
       controller: 'page',
       handler: 'index'
     },
     {
-      path: '/myweb',
+      path: '/webLearn/detail',
       exact: true,
-      Component: () => (require('@/page/myweb').default),
+      Component: () => (require('@/page/detail').default),
       controller: 'page',
       handler: 'index'
     },
@@ -46,7 +53,7 @@ module.exports = {
       handler: 'index'
     },
     {
-      path: '/another',
+      path: '/other',
       exact: true,
       Component: () => (require('@/page/another').default),
       controller: 'page',

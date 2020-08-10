@@ -11,9 +11,9 @@ const commonNode = props => (
     ? <div className='normal'>
         <h1 className='title'>
           <NavLink className="myNav" activeClassName='active' to='/home'>主页</NavLink>
-          <NavLink className="myNav" activeClassName='active' to='/myweb'>前端思考</NavLink>
+          <NavLink className="myNav" activeClassName='active' to='/webLearn'>前端思考</NavLink>
           <NavLink className="myNav" activeClassName='active' to='/read-notes'>读书笔记</NavLink>
-          <NavLink className="myNav" activeClassName='active' to='/another'>随笔</NavLink>
+          <NavLink className="myNav" activeClassName='active' to='/other'>随笔</NavLink>
           <NavLink className="myNav" activeClassName='active' to='/extract'>摘抄</NavLink>
         </h1>
         {props.children}
@@ -31,6 +31,7 @@ const Layout = (props) => {
       <html lang='en'>
         <head>
           <meta charSet='utf-8' />
+          <meta name="referrer" content="no-referrer" />
           <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
           <meta name='theme-color' content='#000000' />
           <title>React App</title>

@@ -7,9 +7,14 @@ const path = require('path')
 
 const staticPath = path.join('./app/static')
 
-const fileDisplay = (filePath) => {
-  const filesArr = fs.readdirSync(filePath);
+const fileDisplay = (filePath, type) => {
+  const filesArr = fs.readdirSync(`${filePath}/${type}`);
   return filesArr;
+}
+
+const fileDetal = (filePath, type, fileName) => {
+  const fileDetal = fs.readFileSync(`${filePath}/${type}/${fileName}`, 'utf8');
+  return fileDetal;
 }
 
 class ApiService extends Service {
@@ -36,13 +41,29 @@ class ApiService extends Service {
       ]
     }
   }
-  async getList() {
-    const filesArr = fileDisplay(staticPath);
+  async getList({ type = '', fileName = '' }) {
+    let filesArr = [];
+    if (type) {
+      filesArr = fileDisplay(staticPath, type);
+    }
+    
     // const listData = fs.readFileSync(staticPath,'utf-8')
     return {
       filesArr
     }
   }
+
+  async getDetail({ type = '', fileName = '' }) {
+    let filesDetail = '';
+    if (type) {
+      filesDetail = fileDetal(staticPath, type, fileName);
+    }
+    // const listData = fs.readFileSync(staticPath,'utf-8')
+    return {
+      filesDetail
+    }
+  }
+
 }
 
 module.exports = ApiService

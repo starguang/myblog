@@ -19,7 +19,21 @@ class PageController extends Controller {
       // Page为webpack打包的chunkName，项目默认的entry为Page
       ctx.type = 'text/json'
       ctx.status = 200
-      const listData = await ctx.service.api.getList()
+      const listData = await ctx.service.api.getList(ctx.query);
+
+      ctx.body = listData
+    } catch (error) {
+      ctx.logger.error(error)
+    }
+  }
+  async getDetail() {
+    const { ctx } = this;
+    try {
+      // Page为webpack打包的chunkName，项目默认的entry为Page
+      ctx.type = 'text/json'
+      ctx.status = 200
+      const listData = await ctx.service.api.getDetail(ctx.query);
+
       ctx.body = listData
     } catch (error) {
       ctx.logger.error(error)

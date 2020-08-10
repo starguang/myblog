@@ -10,16 +10,15 @@ function Page (props) {
       return <p key={file}>{file}</p>
     })
   };
-  // useEffect() {
-  //   window.fetch('/api/getList');
-    
-  // }
   return (
     <div className='normal'>
       <div className='welcome' />
       <p>自我介绍:</p>
       <p>前端开发一枚，也算心血来潮想搭建一个自己的个人博客，写点自己的看法，现在只有一些文章，之后会考虑留言功能</p>
-      {blonList()}
+      <p>
+        其实主页我也不知道说点什么，列一些文章列表也不知道列哪些，随便加点内容吧-_-||
+      </p>
+      {/* {blonList()} */}
       {/* <ReactMarkdown
         source={props.listData}
         escapeHtml={false}
@@ -36,7 +35,7 @@ Page.getInitialProps = async (ctx) => {
   if (__isBrowser__) {
     return (await window.fetch('/api/getList')).json()
   }
-  return ctx.service.api.getList()
+  return ctx.service.api.getList({ type: '' })
   // return __isBrowser__ ? (await window.fetch('/api/getIndexData')).json() : ctx.service.api.index()
 }
 

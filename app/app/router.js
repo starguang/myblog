@@ -9,6 +9,7 @@ module.exports = app => {
   })
   router.get('/api/getIndexData', controller.api.index)
   router.get('/api/getList', controller.api.getList)
+  router.get('/api/getDetail', controller.api.getDetail)
   // 跟路径重定向到home页面
   router.redirect('/', '/home', 302)
 }
