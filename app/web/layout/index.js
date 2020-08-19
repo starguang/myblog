@@ -2,6 +2,7 @@
 import React from 'react'
 import serialize from 'serialize-javascript'
 import { NavLink  } from 'react-router-dom'
+import icon from '../static/icon.png'
 import '@/assets/common.less'
 import './index.less'
 
@@ -34,7 +35,8 @@ const Layout = (props) => {
           <meta name="referrer" content="no-referrer" />
           <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
           <meta name='theme-color' content='#000000' />
-          <title>React App</title>
+          <link rel="shortcut icon" href={icon}></link>
+          <title>看日出日落</title>
           {
             injectCss && injectCss.map(item => <link rel='stylesheet' href={item} key={item} />)
           }
