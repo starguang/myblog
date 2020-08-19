@@ -46,9 +46,23 @@ module.exports = {
       handler: 'index'
     },
     {
+      path: '/read-notes/detail',
+      exact: true,
+      Component: () => (require('@/page/detail').default),
+      controller: 'page',
+      handler: 'index'
+    },
+    {
       path: '/extract',
       exact: true,
       Component: () => (require('@/page/extract').default),
+      controller: 'page',
+      handler: 'index'
+    },
+    {
+      path: '/extract/detail',
+      exact: true,
+      Component: () => (require('@/page/detail').default),
       controller: 'page',
       handler: 'index'
     },
@@ -58,7 +72,14 @@ module.exports = {
       Component: () => (require('@/page/another').default),
       controller: 'page',
       handler: 'index'
-    }
+    },
+    {
+      path: '/other/detail',
+      exact: true,
+      Component: () => (require('@/page/detail').default),
+      controller: 'page',
+      handler: 'index'
+    },
   ],
   baseDir: resolvePath('../'),
   injectCss: [

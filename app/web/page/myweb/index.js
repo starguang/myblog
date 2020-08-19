@@ -13,7 +13,6 @@ function Myweb (props) {
   return (
     <div className='normal'>
       <div className='welcome' />
-      <p>hello。前端思考</p>
       {blonList(filesArr, props)}
     </div>
   )

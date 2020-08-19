@@ -8,8 +8,7 @@ function ReadNotes (props) {
   return (
     <div className='normal'>
       <div className='welcome' />
-      <p>hello。读书笔记</p>
-      {blonList(filesArr)}
+      {blonList(filesArr, props)}
     </div>
   )
 }

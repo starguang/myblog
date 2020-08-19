@@ -25,7 +25,7 @@ obj是fusion团队自己实现的一个object的扩展功能的工具类；
 分别是组件挂载后和组件更新后会调用这两个函数，而且这两个函数里的内容也很类似，componentDidMount里调用了
 ```javascript
 this._setNeedMore();
-this._setContentHeight();`
+this._setContentHeight();
 ```
 
 而componentDidUpdate里则是只调用了

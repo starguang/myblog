@@ -3,15 +3,12 @@ import { Link } from 'react-router-dom'
 import { blonList } from '../../common/index'
 import ReactMarkdown from 'react-markdown'
 import qs from 'qs';
-// import './index.less'
+import './index.less'
 
 function Another (props) {
   const { filesArr = [], filesDetail = '' } = props;
   return (
-    <div className='normal'>
-      <div className='welcome' />
-      <p>lalalal </p>
-      {/* {blonList(filesArr)} */}
+    <div className='detail_content'>
       <ReactMarkdown
         source={filesDetail}
         escapeHtml={false}

@@ -12,20 +12,19 @@ function Page (props) {
   };
   return (
     <div className='normal'>
-      <div className='welcome' />
-      <p>自我介绍:</p>
-      <p>前端开发一枚，也算心血来潮想搭建一个自己的个人博客，写点自己的看法，现在只有一些文章，之后会考虑留言功能</p>
-      <p>
-        其实主页我也不知道说点什么，列一些文章列表也不知道列哪些，随便加点内容吧-_-||
-      </p>
-      {/* {blonList()} */}
-      {/* <ReactMarkdown
-        source={props.listData}
-        escapeHtml={false}
-        // renderers={{
-        //   code: CodeBlock,
-        // }}
-      /> */}
+      <div className='index_content'>
+        <p>自我介绍:</p>
+        <p>&nbsp;&nbsp;&nbsp;&nbsp;前端开发一枚，也算心血来潮想搭建一个自己的个人博客，写点自己的看法，现在只有一些文章，之后会考虑留言功能</p>
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;稍微介绍下搭建过程吧，从某云买了一个服务器，自己搭建了一套服务，后端用node（因为不会Java），
+          用nigx代理到80端口，因为node服务不让监听80端口，前端是react。
+          从买服务器到今天2020年08月19日大概快两个月了，不过终于能看了，虽然样式还是很丑，有什么建议可以跟我说下，虽然还没有留言功能，
+          不过我在考虑中了。
+        </p>
+        <p>
+          &nbsp;&nbsp;&nbsp;&nbsp;然后呢会不定期发表点文档，当然更新时间很不固定。
+        </p>
+      </div>
     </div>
   )
 }

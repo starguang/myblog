@@ -8,8 +8,7 @@ function Another (props) {
   return (
     <div className='normal'>
       <div className='welcome' />
-      <p>hello。suiji </p>
-      {blonList(filesArr)}
+      {blonList(filesArr, props)}
     </div>
   )
 }

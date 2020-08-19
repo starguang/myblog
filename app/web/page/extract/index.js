@@ -8,8 +8,7 @@ function Extract (props) {
   return (
     <div className='normal'>
       <div className='welcome' />
-      <p>hello。摘抄</p>
-      {blonList(filesArr)}
+      {blonList(filesArr, props)}
     </div>
   )
 }
