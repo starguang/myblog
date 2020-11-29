@@ -15,6 +15,8 @@ class PageController extends Controller {
   }
   async getList() {
     const { ctx } = this;
+    ctx.logger.error('ccccccccccccccc')
+
     try {
       // Page为webpack打包的chunkName，项目默认的entry为Page
       ctx.type = 'text/json'

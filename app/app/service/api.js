@@ -18,36 +18,11 @@ const fileDetal = (filePath, type, fileName) => {
 }
 
 class ApiService extends Service {
-  index () {
-    return {
-      news: [
-        {
-          id: '1',
-          title: 'Racket v7.3 Release Notes'
-        },
-        {
-          id: '2',
-          title: 'Free Dropbox Accounts Now Only Sync to Three Devices'
-        },
-        { id: '3',
-          title: 'Voynich Manuscript Decoded by Bristol Academic'
-        },
-        { id: '4',
-          title: 'Burger King to Deliver Whoppers to LA Drivers Stuck in Traffic'
-        },
-        { id: '5',
-          title: 'How much do YouTube celebrities charge to advertise your product? '
-        }
-      ]
-    }
-  }
   async getList({ type = '', fileName = '' }) {
     let filesArr = [];
     if (type) {
       filesArr = fileDisplay(staticPath, type);
     }
-    
-    // const listData = fs.readFileSync(staticPath,'utf-8')
     return {
       filesArr
     }
@@ -58,7 +33,6 @@ class ApiService extends Service {
     if (type) {
       filesDetail = fileDetal(staticPath, type, fileName);
     }
-    // const listData = fs.readFileSync(staticPath,'utf-8')
     return {
       filesDetail
     }
