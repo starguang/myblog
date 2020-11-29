@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import ReactMarkdown from 'react-markdown';
-import { Link } from 'react-router-dom'
+import axios from 'axios'
 import './index.less'
 
 function Page (props) {
@@ -32,10 +32,9 @@ function Page (props) {
 Page.getInitialProps = async (ctx) => {
   // ssr渲染模式只在服务端通过Node获取数据，csr渲染模式只在客户端通过http请求获取数据，getInitialProps方法在整个页面生命周期只会执行一次
   if (__isBrowser__) {
-    return (await window.fetch('/api/getList')).json()
+    return (await axios.get('/api/getList')).data
   }
   return ctx.service.api.getList({ type: '' })
-  // return __isBrowser__ ? (await window.fetch('/api/getIndexData')).json() : ctx.service.api.index()
 }
 
 export default Page

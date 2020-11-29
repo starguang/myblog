@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { blonList } from '../../common/index'
+import axios from 'axios'
 import ReactMarkdown from 'react-markdown'
 import qs from 'qs';
 import './index.less'
@@ -23,7 +22,7 @@ Another.getInitialProps = async (ctx) => {
   if (__isBrowser__) {
     const fileName = qs.parse(ctx.location.search.split('?')[1]).fileName;
     const type = ctx.location.pathname.split('/')[1];
-    return (await window.fetch(`/api/getDetail?type=${type}&fileName=${fileName}`)).json()
+    return (await axios.get(`/api/getDetail?type=${type}&fileName=${fileName}`)).data
   }
   const type = ctx.request.url.split('/')[1];
   const fileName = qs.parse(ctx.request.url.split('?')[1]).fileName;
