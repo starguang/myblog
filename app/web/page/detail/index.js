@@ -22,7 +22,7 @@ Another.getInitialProps = async (ctx) => {
   if (__isBrowser__) {
     const fileName = qs.parse(ctx.location.search.split('?')[1]).fileName;
     const type = ctx.location.pathname.split('/')[1];
-    return (await axios.get(`/api/getDetail?type=${type}&fileName=${fileName}`, { timeout: 500 })).data
+    return (await axios.get(`/api/getDetail?type=${type}&fileName=${fileName}`, { timeout: 1000 })).data
   }
   const type = ctx.request.url.split('/')[1];
   const fileName = qs.parse(ctx.request.url.split('?')[1]).fileName;
