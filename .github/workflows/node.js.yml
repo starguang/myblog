@@ -35,6 +35,7 @@ jobs:
       uses: easingthemes/ssh-deploy@v2.0.7
       env:
         SSH_PRIVATE_KEY: ${{ secrets.DEPLOY_KEY }}
+        SERVER_PORT: "22" # SSH port
         ARGS: "-avzr --delete"
         SOURCE: "build/"
         REMOTE_HOST: ${{ secrets.ALIYUN_SERVER_HOST }}
