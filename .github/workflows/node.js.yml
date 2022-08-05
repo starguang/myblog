@@ -38,6 +38,6 @@ jobs:
         ARGS: "-avzr --delete"
         SOURCE: "build/"
         REMOTE_HOST: ${{ secrets.ALIYUN_SERVER_HOST }}
-        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        REMOTE_USER: "root"
         TARGET: "/usr/share/nginx/html"
 
