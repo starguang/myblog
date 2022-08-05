@@ -37,4 +37,6 @@ jobs:
         BRANCH: pages
         # 指定构建之后的产物要推送哪个目录的代码
         FOLDER: build
+    - run: s config add --AccountID ${{secrets.ALIYUN_ACCOUNT_ID}} --AccessKeyID ${{secrets.ALIYUN_ACCESS_KEY_ID}} --AccessKeySecret ${{secrets.ALIYUN_ACCESS_KEY_SECRET}} -a website_access
+    - run: cd /usr/share/nginx  && git clone -b pages git@github.com:starguang/react-egg.git && cp -r react-egg/. ./html
 
