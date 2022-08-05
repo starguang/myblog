@@ -26,5 +26,15 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
+    - name: Install dependencies 📦️
     - run: npm i --if-present
+    - name: 构建
     - run: npm run build --if-present
+    - name: 部署
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with: 
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: pages
+        # 指定构建之后的产物要推送哪个目录的代码
+        FOLDER: build
+
