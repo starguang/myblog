@@ -128,6 +128,12 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      giscus: {
+        repo: 'starguang/myblog',
+        repoId: '272178801',
+        category: 'Announcements',
+        categoryId: '4564016'
+      }
     }),
 };
 
