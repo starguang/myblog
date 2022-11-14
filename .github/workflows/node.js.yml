@@ -31,7 +31,7 @@ jobs:
     - name: Install dependencies 📦️
       run: yarn --if-present
     - name: 构建
-      run: yarn build --if-present
+      run: yarn build
 
     - name: Deploy to aliyun server
       uses: easingthemes/ssh-deploy@v2.1.5
