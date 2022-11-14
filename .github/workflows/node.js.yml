@@ -25,7 +25,9 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
+        cache: 'npm'
+    - name: Install yarn 📦️
+      run: npm install --global yarn --if-present
     - name: Install dependencies 📦️
       run: yarn --if-present
     - name: 构建
