@@ -130,9 +130,9 @@ const config = {
       },
       giscus: {
         repo: 'starguang/myblog',
-        repoId: '272178801',
+        repoId: 'MDEwOlJlcG9zaXRvcnkyNzIxNzg4MDE=',
         category: 'Announcements',
-        categoryId: '4564016'
+        categoryId: 'MDE4OkRpc2N1c3Npb25DYXRlZ29yeTgyNzY3MTE='
       }
     }),
 };
