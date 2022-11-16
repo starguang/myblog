@@ -131,8 +131,8 @@ const config = {
       giscus: {
         repo: 'starguang/myblog',
         repoId: 'MDEwOlJlcG9zaXRvcnkyNzIxNzg4MDE=',
-        category: 'General',
-        categoryId: 'MDE4OkRpc2N1c3Npb25DYXRlZ29yeTgyNzY3MTE=',
+        category: 'Announcement',
+        categoryId: 'DIC_kwDOEDkecc4CSlJj',
         dataLang: "zh-CN"
       }
     }),
