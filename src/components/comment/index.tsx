@@ -25,7 +25,7 @@ export const Comment = () => {
             id="comments"
             mapping="title"
             strict="1"
-            term="Welcome to @giscus/react component!"
+            term="星光"
             reactionsEnabled="1"
             emitMetadata="0"
             inputPosition="bottom"

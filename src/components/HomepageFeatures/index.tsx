@@ -30,7 +30,7 @@ function Feature({title, Svg, description}: FeatureItem) {
       <div className="text--center padding-horiz--md">
         <h3>自我介绍:</h3>
         <p>前端开发一枚，也算心血来潮想搭建一个自己的个人博客，写点自己的看法，可能不止技术，啥都会有</p>
-        <p>之前都服务搞了很久老是挂掉，今天看到一个生成文档的框架就想试试</p>
+        <p>之前的服务搞了很久老是挂掉，今天看到一个生成文档的框架就想试试</p>
       </div>
     </div>
   );

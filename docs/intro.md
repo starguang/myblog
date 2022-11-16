@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+hide_comment: true
 ---
 
 # 记录一下平时写的一些东西
