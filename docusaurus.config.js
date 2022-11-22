@@ -134,7 +134,8 @@ const config = {
         category: 'Announcement',
         categoryId: 'DIC_kwDOEDkecc4CSlJj',
         dataLang: "zh-CN"
-      }
+      },
+      metadata: [{name: 'xingguang博客', content: 'blog, react, 前端, ndoejs'}],
     }),
 };
 
