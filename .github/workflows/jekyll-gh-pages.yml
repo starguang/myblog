@@ -47,12 +47,9 @@ jobs:
       #     source: /home/runner/work/myblog/myblog/build/
       #     destination: ./_site
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v1
         with:
-          name: build/
-          path: ${{ runner.temp }}/artifact.tar
-          retention-days: '1'
-          if-no-files-found: error
+          path: build/
 
   # Deployment job
   deploy:
