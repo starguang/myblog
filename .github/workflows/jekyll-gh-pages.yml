@@ -32,6 +32,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
+      - name: Install dependencies 📦️
+        run: pnpm Install
       - name: 构建
         run: pnpm build
       - name: Setup Pages
