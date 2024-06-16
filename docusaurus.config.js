@@ -6,7 +6,7 @@ const darkTheme = themes.dracula;
 const config = {
   title: '星光',
   tagline: '一个前端，水平一般',
-  url: 'http://www.xingguang.com',
+  url: 'https://www.xingguang.host',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',

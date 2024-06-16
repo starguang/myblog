@@ -5,7 +5,7 @@ import {
   useThemeConfig,
   useColorMode,
   ThemeConfig
-} from 'docusaurus-theme-common';
+} from '@docusaurus/theme-common';
 
 interface CustomThemeConfig extends ThemeConfig {
   giscus: GiscusProps & { darkTheme: string };
