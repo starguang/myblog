@@ -33,9 +33,9 @@ jobs:
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
       - name: Install dependencies 📦️
-        run: pnpm Install
+        run: npm Install
       - name: 构建
-        run: pnpm build
+        run: npm build
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
