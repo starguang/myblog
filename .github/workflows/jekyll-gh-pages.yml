@@ -38,7 +38,7 @@ jobs:
         run: npm install -g pnpm
 
       - name: Install dependencies
-        run: pnpm install --if-present
+        run: pnpm install 
 
       - name: Build
         run: pnpm run build
