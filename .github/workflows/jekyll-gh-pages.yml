@@ -53,7 +53,7 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      - name: Upload artifact
+      - name: github-pages
         uses: actions/upload-artifact@v4
         with:
           path: build/
