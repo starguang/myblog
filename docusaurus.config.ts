@@ -1,11 +1,14 @@
 import { themes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
-// const {themes} = require('prism-react-renderer');
+
 const lightTheme = themes.github;
 const darkTheme = themes.dracula;
 
 const config: Config = {
+  future: {
+    experimental_faster: true,
+  },
   title: '星光',
   tagline: '一个前端，水平一般',
   favicon: 'img/favicon.ico',
@@ -22,7 +25,7 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  projectName: 'docusaurus', // Usually your repo name.
+  projectName: 'xingguang的博客', // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
