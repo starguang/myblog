@@ -1,0 +1,188 @@
+# 道法自然，从hooks谈起
+
+最近遇到几个比较复杂的需求，从开发到组建直接的数据流设计都比较复杂，但是又没有复杂到需要redux，所以就用到了context。
+
+我其实一直不太喜欢redux，总觉着不太直观，而且我个人认为很少有复杂度那么高的业务需要那么多的redux，如果能够合理的设计组建的数据流，其实大部分时候都不太需要redux这种数据流管理。
+
+然后我写的这些和道法自然有什么关系呢？其实就是react中的数据在hooks中就是使用useState，但是随着业务越来越复杂，我发现我需要在兄弟组建中共享数据，那么就需要把数据放到他们共同的父组建中，这称为状态提升，我们的产品很成功，继续开发，逻辑也越来越复杂，一个组建可能有好多子组建，子组建也有很多孙组建，这个时候我们有时候就会写一些这样的代码
+
+```tsx
+// Grandpa 
+const [name, setName] = useState<string>('张三');
+return (
+	<div>
+  	<Father name={name} />
+  </div>
+)
+
+// Father 
+return (
+	<div>
+  	<Child {...props} />
+  </div>
+)
+// Child
+const｛name｝= props；
+```
+
+
+
+在这里 Father组建并没有用到任何的props，只是做了转发，这样有几点不好：
+
+- ts类型不好写
+- 不美观
+- 层级过于深的时候容易漏掉
+- 不好排查bug
+
+所以自然就会想到如果可以从入口文件就把需要共享的数据集中起来，可以把数据全部传递，那不就可以在我需要用的时候就直接取吗，少了很多props透传的工作。这样就到了context出马了:
+
+```tsx
+// context代码示例
+import { useContext, createContext } from 'react';
+const ThemeContext = createContext(null);
+
+const MyApp = () => {
+	return (
+  	<ThemeContext.Provider value="dark">
+      <App />
+    </ThemeContext.Provider>
+  )
+}
+```
+
+
+
+如果业务非常复杂，设计到很多组建入口的代码数据共享，那么用context也会很复杂，甚至要包裹很多层的context：
+
+```tsx
+// 复杂的context 代码示例
+import { useContext, createContext } from 'react';
+const ThemeContext = createContext(null);
+
+const MyApp = () => {
+	return (
+  	<ThemeContext.Provider value="dark">
+      <App />
+    </ThemeContext.Provider>
+  )
+}
+
+const DataContext = createContext(null);
+
+const App = () => {
+  return (
+  	<DataContext.Provider
+      value={{
+        value1: xxx1,
+        value1: xxx2,
+        value1: xxx3,
+        value1: xxx4,
+        value1: xxx5,
+        value1: xxx6,
+        value1: xxx7,
+      }}
+      >
+    	<Content />
+    </DataContext.Provider>
+  )
+}
+
+const ContentContext = creatContext(null);
+const Content = () => {
+  return (
+  	<ContentContext.Provider
+      value={{
+        valuueContent: xxx1,
+        valuueContent: xxx2,
+        valuueContent: xxx3,
+        valuueContent: xxx4,
+        valuueContent: xxx5,
+        valuueContent: xxx6,
+      }}
+      >
+    	<Next />
+    </ContentContext.Provider>
+  )
+}
+```
+
+如果我们需要共享的数据非常多，而且都在顶层组件中，就需要非常多的数据在顶层共享，就相当于很多的数据放到了顶层组件中，会使顶层组件非常臃肿且不好维护。
+
+这个时候就需要终极手段：redux （开个玩笑，react生态有超级多的数据流工具，不过redux最老牌，所以就用他来举例）：
+
+如果没有那么复杂，还可以用react自带的useReducer。
+
+```tsx
+// use reduce 示例
+import { useReducer } from 'react';
+
+function reducer(state, action) {
+  // ...
+}
+
+function MyComponent() {
+  const [state, dispatch] = useReducer(reducer, { age: 42 });
+  // ...
+
+```
+
+> `useReducer` 和 `useState`非常相似，但是它可以让你把状态更新逻辑从事件处理函数中移动到组件外部
+
+useState+context和useReducer的区别在这里可以看到，useReduce可以把状态的更新逻辑移到组件外部，避免顶层组件的过度膨胀。
+
+useState和区别react官网也有具体的对比：
+
+> Reducer 并非没有缺点！以下是比较它们的几种方法：
+>
+> - **代码体积：** 通常，在使用 `useState` 时，一开始只需要编写少量代码。而 `useReducer` 必须提前编写 reducer 函数和需要调度的 actions。但是，当多个事件处理程序以相似的方式修改 state 时，`useReducer` 可以减少代码量。
+> - **可读性：** 当状态更新逻辑足够简单时，`useState` 的可读性还行。但是，一旦逻辑变得复杂起来，它们会使组件变得臃肿且难以阅读。在这种情况下，`useReducer` 允许你将状态更新逻辑与事件处理程序分离开来。
+> - **可调试性：** 当使用 `useState` 出现问题时, 你很难发现具体原因以及为什么。 而使用 `useReducer` 时， 你可以在 reducer 函数中通过打印日志的方式来观察每个状态的更新，以及为什么要更新（来自哪个 `action`）。 如果所有 `action` 都没问题，你就知道问题出在了 reducer 本身的逻辑中。 然而，与使用 `useState` 相比，你必须单步执行更多的代码。
+> - **可测试性：** reducer 是一个不依赖于组件的纯函数。这就意味着你可以单独对它进行测试。一般来说，我们最好是在真实环境中测试组件，但对于复杂的状态更新逻辑，针对特定的初始状态和 `action`，断言 reducer 返回的特定状态会很有帮助。
+> - **个人偏好：** 并不是所有人都喜欢用 reducer，没关系，这是个人偏好问题。你可以随时在 `useState` 和 `useReducer` 之间切换，它们能做的事情是一样的！
+
+```tsx
+// redux 代码示例
+import { createSlice, configureStore } from '@reduxjs/toolkit'
+
+const counterSlice = createSlice({
+  name: 'counter',
+  initialState: {
+    value: 0
+  },
+  reducers: {
+    incremented: state => {
+      // Redux Toolkit allows us to write "mutating" logic in reducers. It
+      // doesn't actually mutate the state because it uses the Immer library,
+      // which detects changes to a "draft state" and produces a brand new
+      // immutable state based off those changes
+      state.value += 1
+    },
+    decremented: state => {
+      state.value -= 1
+    }
+  }
+})
+
+export const { incremented, decremented } = counterSlice.actions
+
+const store = configureStore({
+  reducer: counterSlice.reducer
+})
+
+// Can still subscribe to the store
+store.subscribe(() => console.log(store.getState()))
+
+// Still pass action objects to `dispatch`, but they're created for us
+store.dispatch(incremented())
+// {value: 1}
+store.dispatch(incremented())
+// {value: 2}
+store.dispatch(decremented())
+// {value: 1}
+```
+
+
+
+所以叫做道法自然，如果可以简单，我们不需要做那么多的工具去人为提高复杂的，这一切都是在业务的基础上做的一步步的升级，如果我们一开始就知道将来会很复杂，那就可以一步到位直接使用context或者redux，但是现实世界是复杂的，无人可以非常准确的预估未来，我们没有办法在一开始就决定一切，所以更好的做法就是及时发现问题，及时修正，在不断的迭代中不断的更新，更新代码，也更新自己的认知，抱着一个树根在河里漂流还自以为找到了救命稻草最终会被海浪吞没。
+
+--2024.12.02
