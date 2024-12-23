@@ -10,22 +10,20 @@
 // Grandpa 
 const [name, setName] = useState<string>('张三');
 return (
-	<div>
-  	<Father name={name} />
+ <div>
+   <Father name={name} />
   </div>
 )
 
 // Father 
 return (
-	<div>
-  	<Child {...props} />
+ <div>
+   <Child {...props} />
   </div>
 )
 // Child
 const｛name｝= props；
 ```
-
-
 
 在这里 Father组建并没有用到任何的props，只是做了转发，这样有几点不好：
 
@@ -42,15 +40,13 @@ import { useContext, createContext } from 'react';
 const ThemeContext = createContext(null);
 
 const MyApp = () => {
-	return (
-  	<ThemeContext.Provider value="dark">
+ return (
+   <ThemeContext.Provider value="dark">
       <App />
     </ThemeContext.Provider>
   )
 }
 ```
-
-
 
 如果业务非常复杂，设计到很多组建入口的代码数据共享，那么用context也会很复杂，甚至要包裹很多层的context：
 
@@ -60,8 +56,8 @@ import { useContext, createContext } from 'react';
 const ThemeContext = createContext(null);
 
 const MyApp = () => {
-	return (
-  	<ThemeContext.Provider value="dark">
+ return (
+   <ThemeContext.Provider value="dark">
       <App />
     </ThemeContext.Provider>
   )
@@ -71,7 +67,7 @@ const DataContext = createContext(null);
 
 const App = () => {
   return (
-  	<DataContext.Provider
+   <DataContext.Provider
       value={{
         value1: xxx1,
         value1: xxx2,
@@ -82,7 +78,7 @@ const App = () => {
         value1: xxx7,
       }}
       >
-    	<Content />
+     <Content />
     </DataContext.Provider>
   )
 }
@@ -90,7 +86,7 @@ const App = () => {
 const ContentContext = creatContext(null);
 const Content = () => {
   return (
-  	<ContentContext.Provider
+   <ContentContext.Provider
       value={{
         valuueContent: xxx1,
         valuueContent: xxx2,
@@ -100,7 +96,7 @@ const Content = () => {
         valuueContent: xxx6,
       }}
       >
-    	<Next />
+     <Next />
     </ContentContext.Provider>
   )
 }
@@ -180,8 +176,6 @@ store.dispatch(incremented())
 store.dispatch(decremented())
 // {value: 1}
 ```
-
-
 
 所以叫做道法自然，如果可以简单，我们不需要做那么多的工具去人为提高复杂的，这一切都是在业务的基础上做的一步步的升级，如果我们一开始就知道将来会很复杂，那就可以一步到位直接使用context或者redux，但是现实世界是复杂的，无人可以非常准确的预估未来，我们没有办法在一开始就决定一切，所以更好的做法就是及时发现问题，及时修正，在不断的迭代中不断的更新，更新代码，也更新自己的认知，抱着一个树根在河里漂流还自以为找到了救命稻草最终会被海浪吞没。
 
