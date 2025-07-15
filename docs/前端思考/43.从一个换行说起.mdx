@@ -1,0 +1,39 @@
+# 从一个换行说起
+
+今天遇到一个需求，就是让输入框支持换行，我心想：这还不简单，input换成textarea，enter提交修改为:
+
+```tsx
+// 按下enter的同时没包含shift才执行
+e.key === 'Enter' && !e.shiftKey
+```
+
+搞定，打完收工！
+
+等一下，为什么后端返回来的成了空格，原来是请求的时候是通过query参数去请求的，把/n转错误了，需要自己处理下：encodeURIComponent(query)，又搞定了。为什么要说有呢？
+
+然后发现回显的时候可能不是textarea，有可能是单纯的div，div里不支持/n，那也简单，用pre标签包裹一下：
+
+```tsx
+<pre>{query}</pre>
+```
+
+但是用了之后发现：怎么样式不太一样了，因为pre标签是等宽显示的，MDN的解释：
+
+> **HTML `pre`** 元素表示预定义格式文本。在该元素中的文本通常按照原文件中的编排，以等宽字体的形式展现出来，文本中的空白符（比如空格和换行符）都会显示出来。(紧跟在 `pre` 开始标签后的换行符也会被省略)
+
+所以会显得字符间的宽度不一样。
+
+那么我就用css来实现：white-space:pre-wrap；又搞定了，为什么又要说又呢？
+
+然后发现这样的话只能有/n 才会换行，正常情况的word- break不生效了！如果一直没有输入过换行，会导致挤压别的地方的空间。
+
+最后通过终极杀招，把返回的字符串/n替换成`js<br />`:
+
+```tsx
+// 解释下为什么还得用dangerouslySetInnerHTML，因为react做了字符的替换，是无法渲染div的格式的，所以只能通过dangerouslySetInnerHTML来支持<br />的渲染
+<div dangerouslySetInnerHTML={{ __html: value.replace(/\n/g, '<br>') }}></div>
+```
+
+终于解决。
+
+2025-07-15
