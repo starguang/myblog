@@ -7,6 +7,7 @@ const darkTheme = themes.dracula;
 
 const config: Config = {
   future: {
+    v4: true,
     experimental_faster: true,
   },
   title: '星光',
