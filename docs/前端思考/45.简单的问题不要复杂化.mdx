@@ -6,11 +6,11 @@
 
 首先是第一个，刨除业务逻辑大致是这样的： 
 
-![image.png](./assets/Pasted Graphic.png)
+![image.png](./assets/PastedGraphic.png)
 
 就是这样的一个父子组件的关系，这样其实非常的清晰，不管是把通用组件提取出来还是把upload组件放在通用组件里然后用参数去控制，这样简单很多，但是我看到的代码最后写成了这样：
 
-![image.png](./assets/Pasted Graphic 2.png)
+![image.png](./assets/PastedGraphic2.png)
 
 关键是这两个组件还有一部分在同一个文件里，弹窗和抽屉又在不同的组件里，最后管理一团乱麻，我整理了一两个小时最后理顺了这里的关系，然后又花了将近一个小时把这里的代码整理成第一种的样子。
 
